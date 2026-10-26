@@ -18,14 +18,16 @@ interface TaxCalculationOptions {
     tax: number;
 }
 
-function taxCalculation( options: TaxCalculationOptions ): number[] {
+function taxCalculation( options: TaxCalculationOptions ): [number, number] {
+
+    const { products, tax } = options;
 
     let total = 0;
 
-    options.products.forEach( ({ price }) => {
+    products.forEach( ({ price }) => {
         total += price;
     });
-    const finalPrice = total + (total * options.tax);
+    const finalPrice = total + (total * tax);
     return [total, finalPrice];
 }
 
